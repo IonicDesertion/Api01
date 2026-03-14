@@ -1,0 +1,64 @@
+.app {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+    }
+/* Contenedor principal de la tarjeta */
+.db-card {
+  background: #1a1a1a; /* Fondo oscuro base */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+/* LA CAPA DE FONDO: Aquí ocurre la magia */
+.card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+  z-index: -1; /* Se queda atrás */
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+/* Contenedor del contenido para que no se herede el desenfoque */
+.card-content {
+  z-index: 2;
+  background: transparent;
+}
+
+/* --- EFECTOS HOVER --- */
+
+.db-card:hover {
+  transform: translateY(-10px);
+  /* Brillo exterior (Glow) */
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.4); 
+}
+
+.db-card:hover .card-bg {
+  /* DESENFOQUE DEL FONDO */
+  filter: blur(15px); 
+  transform: scale(1.2); /* Lo agrandamos un poco para que no se vean bordes blancos */
+  background: linear-gradient(45deg, #2c2c2c, #444); /* Lo hacemos más brillante */
+}
+
+.db-card:hover .db-char-img {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)); /* Brillo al personaje */
+}
+
+/* Imagen del personaje */
+.db-char-img {
+  height: 250px;
+  object-fit: contain;
+  transition: all 0.4s ease;
+  z-index: 3;
+}
+
+/* Resalte del texto en hover */
+.db-card:hover h4 {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
