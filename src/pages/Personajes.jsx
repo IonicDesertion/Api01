@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const API = "https://dragonball-api.com/api/characters?page=1&limit=100";
 
@@ -13,6 +14,7 @@ const Personajes = () => {
       if (!response.ok) throw new Error(`Error: ${response.status}`);
       const data = await response.json();
       setDatos(data.items);
+      console.log(data)
       setLoading(false);
     } catch (err) {
       setError(err.message);
@@ -20,7 +22,8 @@ const Personajes = () => {
     }
   };
 
-  useEffect(() => {
+   
+   useEffect(() => {
     getDatos();
   }, []);
 
@@ -51,6 +54,7 @@ const Personajes = () => {
 
         <div className="row g-4">
           {datos.map((item) => (
+            
             <div key={item.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
               <div className="card h-100 db-card border-0 position-relative">
                 
@@ -78,12 +82,58 @@ const Personajes = () => {
                   </div>
 
                   <div className="card-footer border-0 bg-transparent pb-4 d-flex justify-content-center gap-2">
-                    <button className="btn btn-sm btn-info px-3 fw-bold">Modal</button>
-                    <button className="btn btn-sm btn-outline-danger px-3">Detalles</button>
+                    <button className="btn btn-sm btn-info px-3 fw-bold" data-bs-toggle="modal" data-bs-target={`#${item.id}`}>Modal</button>
+                    <Link to={`/detallepersonajes/${item.id}/${item.name}`} className="btn btn-sm btn-outline-danger px-3">Detalles</Link>
                   </div>
                 </div>
               </div>
+
+
+
+<div>
+  
+
+  {/* Modal */}
+  <div className="modal fade" id={item.id} tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal-dialog modal-xl">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+        </div>
+        <div className="modal-body">
+       <div className="row">
+        <div className="col-md-4">
+          <img src={item.image} alt="" className="img-fluid" />
+        </div>
+        <div className="col-md-8">
+          <p>{item.name}</p>
+          <p>{item.ki}</p>
+          <p>{item.maxKi}</p>
+          <p>{item.race}</p>
+          <p>{item.gender}</p>
+          <p>{item.description}</p>
+          <p>{item.affiliation}</p>
+        </div>
+       </div>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
             </div>
+            
           ))}
         </div>
       </div>

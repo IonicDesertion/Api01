@@ -5,6 +5,7 @@ import Personajes from "./pages/Personajes";
 import Transformaciones from "./pages/Transformaciones";
 import Planetas from "./pages/Planetas";
 import Error404 from "./pages/Error404";
+import DetallePersonajes from "./pages/DetallePersonajes";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           
           <Route path="/transformaciones" element={<Transformaciones/>}/>
           <Route path="/planetas" element={<Planetas/>}/>
+          <Route path="/detallepersonajes/:id" element={<DetallePersonajes/>}/>
           <Route path="*" element={<Error404/>}/>
 
         </Routes>

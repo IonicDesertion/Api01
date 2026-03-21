@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import FiltroPlaneta from './FiltroPlaneta'
 
 const Header = () => {
   return (
@@ -17,13 +18,15 @@ const Header = () => {
         <li className="nav-item">
           <Link to={'transformaciones'} className="nav-link" href="#">Transformaciones</Link>
         </li>
+        <li className="nav-item">
+          <Link to={'planetas'} className="nav-link" href="#">Planetas</Link>
+        </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Planetas
           </a>
           <ul className="dropdown-menu">
-            <li><Link to={'planetas'} className="dropdown-item" href="#">Planeta 1</Link></li>
-            <li><Link to={'planetas'} className="dropdown-item" href="#">Planeta 2</Link></li>
+            <FiltroPlaneta/>
           </ul>
         </li>
         
